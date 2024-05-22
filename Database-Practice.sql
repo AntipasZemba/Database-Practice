@@ -22,3 +22,21 @@ IF OBJECT_ID ('TVendors')              IS NOT NULL    DROP TABLE TVendors
 IF OBJECT_ID ('TCities')               IS NOT NULL    DROP TABLE TCities
 IF OBJECT_ID ('TStates')               IS NOT NULL    DROP TABLE TStates
 
+-- --------------------------------------------------------------------------------
+--	Step #1 : Create table 
+-- --------------------------------------------------------------------------------
+
+CREATE TABLE TCustomers
+(
+  intCustomerID      INTEGER          NOT NULL
+  ,strFirstName      VARCHAR(255)     NOT NULL
+  ,strLastName       VARCHAR(255)     NOT NULL
+  ,strAddress        VARCHAR(255)     NOT NULL
+  ,intCityID         INTEGER          NOT NULL
+  ,intStateID        INTEGER          NOT NULL
+  ,strZip            VARCHAR(255)     NOT NULL
+  ,dtmDateOfBirth    DATETIME         NOT NULL
+  ,intRaceID         INTEGER          NOT NULL
+  ,intGenderID       INTEGER          NOT NULL
+  ,CONSTRAINT TCustomers_PK PRIMARY KEY (intCustomerID)
+)
