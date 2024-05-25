@@ -278,16 +278,16 @@ Select	 TC.intCustomerID
 	,TP.intProductID
 	,TP.strProductName
 From TCustomers AS TC 
-	JOIN TOrders AS TOR
-	   ON TC.intCustomerID = TOR.intCustomerID
-	JOIN TOrderProducts AS TORP
-	   ON TORP.intOrderID = TOR.intOrderID
-	JOIN TProducts AS TP
-	   ON TP.intProductID = TORP.intProductID
+JOIN TOrders AS TOR
+	ON TC.intCustomerID = TOR.intCustomerID
+JOIN TOrderProducts AS TORP
+	ON TORP.intOrderID = TOR.intOrderID
+JOIN TProducts AS TP
+	ON TP.intProductID = TORP.intProductID
 Order By 
-	    TC.strLastName ASC
-	   ,TC.strFirstName ASC
-	   ,TOR.dtmOrderDate DESC
+	TC.strLastName ASC
+	,TC.strFirstName ASC
+	,TOR.dtmOrderDate DESC
 
 --Write and explicit join that shows all products. 
 --Show and order the list by vendor name and product category and 
@@ -301,10 +301,10 @@ Select   TP.intProductID
 	,TPC.intProductCategoryID
 	,TPC.strProductCategory		
 From TProducts AS TP 
-	JOIN TProductCategories AS TPC
-	   ON TP.intProductCategoryID = TPC.intProductCategoryID
-	JOIN TVendors AS TV
-	   ON TV.intVendorID = TP.intVendorID
+JOIN TProductCategories AS TPC
+	ON TP.intProductCategoryID = TPC.intProductCategoryID
+JOIN TVendors AS TV
+	ON TV.intVendorID = TP.intVendorID
 Order By 
 	TV.strVendorName
 	,TPC.strProductCategory
@@ -322,8 +322,8 @@ Select   TP.intProductID
 	,TV.strContactFirstName
 	,TV.strContactLastName		
 From TProducts AS TP 
-	JOIN TVendors AS TV
-	   ON TV.intVendorID = TP.intVendorID
+JOIN TVendors AS TV
+	ON TV.intVendorID = TP.intVendorID
 Where 
 	TP.intInventory < 10	  
 Order By 
@@ -340,16 +340,16 @@ Select	 TC.intCustomerID
 	,TP.intProductID
 	,TP.strProductName
 From TCustomers AS TC 
-	JOIN TOrders AS TOR
-		ON TC.intCustomerID = TOR.intCustomerID
-	JOIN TOrderProducts AS TORP
-		ON TORP.intOrderID = TOR.intOrderID
-	JOIN TProducts AS TP
-		ON TP.intProductID = TORP.intProductID
-	JOIN TGenders AS TG 
-		ON TG.intGenderID = TC.intGenderID
-	JOIN TRaces AS TR
-		ON TR.intRaceID = TC.intRaceID
+JOIN TOrders AS TOR
+	ON TC.intCustomerID = TOR.intCustomerID
+JOIN TOrderProducts AS TORP
+	ON TORP.intOrderID = TOR.intOrderID
+JOIN TProducts AS TP
+	ON TP.intProductID = TORP.intProductID
+JOIN TGenders AS TG 
+	ON TG.intGenderID = TC.intGenderID
+JOIN TRaces AS TR
+	ON TR.intRaceID = TC.intRaceID
 Where 
 	TC.dtmDateOfBirth < '1/1/1997'
 	and TG.strGender = 'Male'
@@ -367,15 +367,15 @@ Select Distinct  TV.strVendorName
 		,TS.intStateID
 		,TS.strState
 From TCustomers AS TC 
-	JOIN TOrders AS TOR
-		ON TC.intCustomerID = TOR.intCustomerID
-	JOIN TOrderProducts AS TORP
-		ON TORP.intOrderID = TOR.intOrderID
-	JOIN TProducts AS TP
-		ON TP.intProductID = TORP.intProductID
-	JOIN TStates AS TS 
-		ON TS.intStateID = TC.intStateID
-	JOIN TVendors AS TV
-		ON TV.intVendorID = TP.intVendorID
+JOIN TOrders AS TOR
+	ON TC.intCustomerID = TOR.intCustomerID
+JOIN TOrderProducts AS TORP
+	ON TORP.intOrderID = TOR.intOrderID
+JOIN TProducts AS TP
+	ON TP.intProductID = TORP.intProductID
+JOIN TStates AS TS 
+	ON TS.intStateID = TC.intStateID
+JOIN TVendors AS TV
+	ON TV.intVendorID = TP.intVendorID
 Order By 
 	   TS.strState, TV.strVendorName
