@@ -271,12 +271,12 @@ VALUES	( 1, 1, 1 )
 --and the products on the order.  Order the list based on customer and order date. 
 
 Select	 TC.intCustomerID
-		,TC.strFirstName
-		,TC.strLastName
-		,TOR.intOrderID
-	    	,TOR.dtmOrderDate
-		,TP.intProductID
-		,TP.strProductName
+	,TC.strFirstName
+	,TC.strLastName
+	,TOR.intOrderID
+	,TOR.dtmOrderDate
+	,TP.intProductID
+	,TP.strProductName
 From TCustomers AS TC 
 	JOIN TOrders AS TOR
 	   ON TC.intCustomerID = TOR.intCustomerID
@@ -294,51 +294,51 @@ Order By
 --retail price (highest price first - lowest price last). 
 
 Select   TP.intProductID
-		,TP.strProductName
-		,TP.monRetailCost
-		,TV.intVendorID
-		,TV.strVendorName
-		,TPC.intProductCategoryID
-		,TPC.strProductCategory		
+	,TP.strProductName
+	,TP.monRetailCost
+	,TV.intVendorID
+	,TV.strVendorName
+	,TPC.intProductCategoryID
+	,TPC.strProductCategory		
 From TProducts AS TP 
 	JOIN TProductCategories AS TPC
 	   ON TP.intProductCategoryID = TPC.intProductCategoryID
 	JOIN TVendors AS TV
 	   ON TV.intVendorID = TP.intVendorID
 Order By 
-	    TV.strVendorName
-	   ,TPC.strProductCategory
-	   ,TP.monRetailCost DESC
+	TV.strVendorName
+	,TPC.strProductCategory
+	,TP.monRetailCost DESC
 
 --Write an explicit join that shows all products and 
 --their inventory and their vendors name and contact information 
 --for products who inventory is less than 10. 
 
 Select   TP.intProductID
-		,TP.strProductName
-		,TP.intInventory
-		,TV.intVendorID
-		,TV.strVendorName
-		,TV.strContactFirstName
-		,TV.strContactLastName		
+	,TP.strProductName
+	,TP.intInventory
+	,TV.intVendorID
+	,TV.strVendorName
+	,TV.strContactFirstName
+	,TV.strContactLastName		
 From TProducts AS TP 
 	JOIN TVendors AS TV
 	   ON TV.intVendorID = TP.intVendorID
 Where 
-	   TP.intInventory < 10	  
+	TP.intInventory < 10	  
 Order By 
-	   TP.strProductName
+	TP.strProductName
 
 --Write an explicit join that shows all products order by males older than 21.  
 --Show and order the list based on the customer's race. 
 
 Select	 TC.intCustomerID
-		,TC.strFirstName
-		,TC.strLastName
-		,TOR.intOrderID
-		,TOR.dtmOrderDate
-		,TP.intProductID
-	    	,TP.strProductName
+	,TC.strFirstName
+	,TC.strLastName
+	,TOR.intOrderID
+	,TOR.dtmOrderDate
+	,TP.intProductID
+	,TP.strProductName
 From TCustomers AS TC 
 	JOIN TOrders AS TOR
 		ON TC.intCustomerID = TOR.intCustomerID
@@ -354,18 +354,18 @@ Where
 	TC.dtmDateOfBirth < '1/1/1997'
 	and TG.strGender = 'Male'
 Order By 
-	   TR.intRaceID 
+	TR.intRaceID 
 
 --Write an explicit join that shows the list of vendors of which 
 --products were ordered based on the customer's state.  
 --Order the result set by state. 
 
 Select Distinct  TV.strVendorName
-				,TV.intVendorID
-				,TP.intProductID
-				,TP.strProductName
-				,TS.intStateID
-				,TS.strState
+		,TV.intVendorID
+		,TP.intProductID
+		,TP.strProductName
+		,TS.intStateID
+		,TS.strState
 From TCustomers AS TC 
 	JOIN TOrders AS TOR
 		ON TC.intCustomerID = TOR.intCustomerID
